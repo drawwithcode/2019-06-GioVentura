@@ -20,7 +20,7 @@ function setup() {
   button.mousePressed(changeColor);
   button.position((width / 2) - 80, 800);
 
-  slider1 = createSlider(2, 130, 17); // it needs a minimum (10) , a maximum (50) and a starting value (20).
+  slider1 = createSlider(2, 130, 17); // it needs a minimum (2) , a maximum (130) and a starting value (17).
   slider2 = createSlider(5, 40, 10); // RICORDATI DI MOLTIPLICARE PER MENO
   slider1.position((width / 2) - 72, 700);
   slider2.position((width / 2) - 72, 750);
@@ -35,7 +35,7 @@ function draw() {
   background(bgcolor);
   for (let i = 0; i < bubbles.length; i++) {
     bubbles[i].move();
-    bubbles[i].show();
+    bubbles[i].show(slider1.value());
   }
 }
 
@@ -50,10 +50,10 @@ class Bubble {
     this.y = this.y + random(-5, 5);
   }
 
-  show() {
+  show(_extra) {
     stroke(255);
     strokeWeight(4);
     fill(255, 40); // il secondo valore è l'alpha.
-    ellipse(this.x, this.y, (this.r * 2) + slider1.value());
+    ellipse(this.x, this.y, (this.r * 2) + _extra);
   }
 }
