@@ -2,6 +2,9 @@ var bgcolor;
 var button;
 var bubbles = [];
 
+var slider1;
+var slider2;
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
@@ -16,6 +19,11 @@ function setup() {
   button = createButton("Change Background Grey");
   button.mousePressed(changeColor);
   button.position((width / 2) - 80, 800);
+
+  slider1 = createSlider(2, 130, 17); // it needs a minimum (10) , a maximum (50) and a starting value (20).
+  slider2 = createSlider(5, 40, 10); // RICORDATI DI MOLTIPLICARE PER MENO
+  slider1.position((width / 2) - 72, 700);
+  slider2.position((width / 2) - 72, 750);
 
 }
 
@@ -45,7 +53,7 @@ class Bubble {
   show() {
     stroke(255);
     strokeWeight(4);
-    fill(255, 40); // il secondo valore è l'alpha. 
-    ellipse(this.x, this.y, this.r * 2);
+    fill(255, 40); // il secondo valore è l'alpha.
+    ellipse(this.x, this.y, (this.r * 2) + slider1.value());
   }
 }
